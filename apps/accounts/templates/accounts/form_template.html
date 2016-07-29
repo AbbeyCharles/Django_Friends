@@ -1,0 +1,25 @@
+
+{% for error in form.non_field_errors %}
+	<p class="error"><strong><i>{{ error }}</i></strong></p>
+{% endfor %}
+
+
+
+{% for field in form %}
+
+
+    <div>
+        <div>
+            {% for error in field.errors %}
+                <p class="error"><strong><i>{{ error }}</i></strong></p>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <label>{{ field.label_tag }}</label>
+            {{ field }}
+        </div>
+        {% if 'password1' in field.label_tag %}
+            <p class='newline'>*Password should be at least 8 characters</p>
+        {% endif %}
+    </div>
+{% endfor %}

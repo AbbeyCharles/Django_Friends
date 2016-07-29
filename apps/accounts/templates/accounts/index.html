@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login/Registration</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'accounts/style.css'  %}">
+</head>
+<body>
+	<div id="indexcontainer">
+		<h2>Welcome!</h2>
+		<div id="indexformcontainer">
+			<div id='registration' class='indexdiv'>
+				<h3 class="divtitle">Register</h3>
+				{% if messages %}
+					<ul class="messages">
+					    {% for message in messages %}
+					    	{% if 'registration_error' in message.tags %}
+							    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					    	{% endif %}
+					    {% endfor %}
+					</ul>
+				{% endif %}
+				<form action="{% url 'accounts:index' %}" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="register">
+					{% include 'accounts/form_template.html' with form=form2 %}
+					<input type="submit" value="register" class="btn">
+					<div class="clear"></div>
+				</form>
+			</div>
+			<div id='login' class='indexdiv'>
+				<h3 class="divtitle">Log In</h3>
+				{% if messages %}
+					<ul class="messages">
+					    {% for message in messages %}
+					    	{% if 'login_error' in message.tags %}
+							    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+					    	{% endif %}
+					    {% endfor %}
+					</ul>
+				{% endif %}
+				<form action="{% url 'accounts:index' %}" method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="login">
+					{% include 'accounts/form_template.html' with form=form1 %}
+					<input type="submit" value="login" class="btn">
+					<div class="clear"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

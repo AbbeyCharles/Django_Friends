@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Friends</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'accounts/style.css'  %}">
+</head>
+<body>
+	<div id="homecontainer">
+		<a href="{% url 'accounts:logout' %}" class="navbutton">Log Out</a>
+			<h1>Welcome {{ user }}</h1>
+			<div id="friendscontainer">
+			{% if friends %}
+				<h3>Here is the list of your friends:</h3>
+				<table>
+					<tr>
+						<th>Alias</th>
+						<th>Action</th>
+					</tr>
+					{% for friend in friends %}
+						<tr>
+							<td>{{ friend.alias }}</td>
+							<td><a href="/user/{{ friend.id }}">View Profile</a> <a href="/deletefriend/{{ friend.id }}">Remove as Friend</a></td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<h3>You don't have friends yet.</h3>
+			{% endif %}
+		</div>
+
+		{% if nonfriends %}
+			<h3>Other Users not on your friends list:</h3>
+			<table>
+				<tr>
+					<th>Alias</th>
+					<th>Action</th>
+				</tr>
+				{% for user in nonfriends %}
+					<tr>
+						<td><a href="/user/{{ user.id }}">{{ user.alias }}</a></td>
+						<td><a href="/addfriend/{{user.id}}" class="btn">Add as Friend</a></td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% endif %}
+	</div>
+</body>
+</html>
