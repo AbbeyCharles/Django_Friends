@@ -13,11 +13,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import dj_database_url
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
-DATABASES = {}
-DATABASES['default'] =  dj_database_url.config(default='postgres://user:pass@host/db')
-DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
+
+# DATABASES = {}
+# DATABASES['default'] =  dj_database_url.config(default='postgres://user:pass@host/db')
+# DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql_psycopg2'
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -93,6 +92,8 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -141,3 +142,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
