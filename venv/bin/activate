@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/ThomasJamesEdstrom/Web_Projects/django/pythonblackbelt/venv"
+VIRTUAL_ENV="/Users/ThomasJamesEdstrom/Code/Django/pythonblackbelt/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
