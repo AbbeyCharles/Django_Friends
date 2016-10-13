@@ -1,1 +1,1 @@
-web: gunicorn django_friends.wsgi --log-file -
+web: gunicorn pythonblackbelt.wsgi
